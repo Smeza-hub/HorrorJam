@@ -924,6 +924,7 @@ texture = ExtResource("2_bo1nx")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 0.933333)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

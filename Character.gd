@@ -64,13 +64,17 @@ func _physics_process(delta: float) -> void:
 	current_stamina -= 1
 	stamina.value = current_stamina
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-	
+	print(rad_to_deg(rotation))
 	
 func handle_animation():
-	if rotation < -1.5 || rotation > 1.5:
-		$Sprite2D.flip_v = true
-	else:
-		$Sprite2D.flip_v = false
+	if rotation < (11*PI)/6 && rotation > -PI/6:
+		switch_animation("swim")
+	elif rotation < -PI/6 && rotation > -PI/3:
+		switch_animation("swim67.5")
+	elif rotation < -PI/6 && rotation > -PI/3:
+		switch_animation("swim45")
+	elif (rotation < -PI/3 && rotation > -(2*PI)/3) || (rotation > PI/3 && rotation < (2*PI)/3):
+		switch_animation("Swimtop")
 	if velocity.x != 0 ||velocity.y != gravity:
 		$Sprite2D.speed_scale = move_toward($Sprite2D.speed_scale,2,1)
 	else:
@@ -92,4 +96,11 @@ func scream(scream_power):
 			)
 			get_tree().root.call_deferred("add_child",new_blip)
 		can_scream = true
+		
+		
+func switch_animation(animation):
+	var current_frame = sprite_2d.get_frame()
+	var current_progress = sprite_2d.get_frame_progress()
+	sprite_2d.play(animation)
+	sprite_2d.set_frame_and_progress(current_frame, current_progress)
 	
