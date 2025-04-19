@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://c7rgh6aa5b1gc"]
+
+[ext_resource type="Script" uid="uid://cyrny6v0txttq" path="res://blip.gd" id="1_wtcfe"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p7p15"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
+size = Vector2(19.4876, 6.94176)
+
+[sub_resource type="Gradient" id="Gradient_p7p15"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xsc8c"]
+gradient = SubResource("Gradient_p7p15")
+fill_from = Vector2(1, 0)
+
+[sub_resource type="Gradient" id="Gradient_xsc8c"]
+offsets = PackedFloat32Array(0, 0.00649351)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gdd2t"]
+gradient = SubResource("Gradient_xsc8c")
+fill = 1
+
+[node name="Blip" type="RigidBody2D"]
+z_index = 1
+collision_layer = 4
+collision_mask = 2
+mass = 0.001
+physics_material_override = SubResource("PhysicsMaterial_p7p15")
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 1
+linear_damp_mode = 1
+angular_damp_mode = 1
+script = ExtResource("1_wtcfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.71862, -0.0918866)
+shape = SubResource("RectangleShape2D_0hol4")
+debug_color = Color(1, 1, 1, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(0.014, 0.225)
+energy = 6.9
+texture = SubResource("GradientTexture2D_xsc8c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(-0.223286, 0.011)
+texture = SubResource("GradientTexture2D_gdd2t")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
