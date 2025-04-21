@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://caomt63en3jnn"]
+[gd_scene load_steps=21 format=4 uid="uid://caomt63en3jnn"]
 
 [ext_resource type="PackedScene" uid="uid://lx2hc8f06wwm" path="res://Scenes/character.tscn" id="1_jjgbg"]
 [ext_resource type="Texture2D" uid="uid://b0io18j6f6epk" path="res://ac1379cc-16fa-407d-aa92-0b2b74a4e92b-2483615961.png" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://b3da3kio60f85" path="res://assets/CaveG.png" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://c3re8v6pgov6w" path="res://Scenes/point_light_2d_2.gd" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://dpn28gqewuy8i" path="res://Scenes/stamina.tscn" id="5_kry3j"]
+[ext_resource type="PackedScene" uid="uid://di51fknrbxs4e" path="res://Scenes/health.tscn" id="6_6bp64"]
+[ext_resource type="PackedScene" uid="uid://dllmd5x4uvxvd" path="res://Scenes/airpocket.tscn" id="6_21xkr"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="7_344ge"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jjvhh"]
 texture = ExtResource("3_8gbba")
@@ -905,26 +908,50 @@ fill = 1
 fill_from = Vector2(0.600917, 0.490826)
 fill_to = Vector2(0.238532, 0.752294)
 
-[node name="Main" type="Node"]
+[sub_resource type="Gradient" id="Gradient_6bp64"]
+offsets = PackedFloat32Array(0, 0.012987)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -582.0
-offset_top = -968.0
-offset_right = -534.0
-offset_bottom = -338.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-texture = ExtResource("2_bo1nx")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_344ge"]
+gradient = SubResource("Gradient_6bp64")
+fill_from = Vector2(0, 0.518349)
+fill_to = Vector2(1, 0.522936)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_344ge"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ynf5e"]
+noise = SubResource("FastNoiseLite_344ge")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdnlq"]
+shader = ExtResource("7_344ge")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_ynf5e")
+shader_parameter/waterColor = Color(0.180392, 0.372549, 0.756863, 0)
+shader_parameter/colorCorection = 0.0
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.6
+shader_parameter/WDSize = 0.95
+shader_parameter/WDSpeed = 2.5
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.01, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_344ge"]
+polygon = PackedVector2Array(56, -55, 103, -53, 101, -1, 56, -1)
+
+[node name="Main" type="Node"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 0.933333)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -935,10 +962,11 @@ tile_set = SubResource("TileSet_kry3j")
 [node name="Node2D" parent="." instance=ExtResource("1_jjgbg")]
 
 [node name="PointLight2D2" type="PointLight2D" parent="Node2D"]
+visible = false
 position = Vector2(-42.625, 11.9375)
 scale = Vector2(1.32813, 1.0625)
-color = Color(0.468577, 0.280872, 0.102852, 1)
-energy = 0.85
+color = Color(0.760825, 0.710673, 0.423438, 1)
+energy = 4.35
 texture = SubResource("GradientTexture2D_jjvhh")
 offset = Vector2(40, -15)
 script = ExtResource("4_jjvhh")
@@ -951,7 +979,47 @@ anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 45.0
 offset_top = -26.0
-offset_right = 127.0
-offset_bottom = -22.0
+offset_right = 145.0
+offset_bottom = -16.0
 grow_vertical = 0
-scale = Vector2(2.36, 2.36)
+
+[node name="Health" parent="CanvasLayer2" instance=ExtResource("6_6bp64")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -43.0
+offset_right = 145.0
+offset_bottom = -33.0
+grow_vertical = 0
+
+[node name="Airpocket" parent="." instance=ExtResource("6_21xkr")]
+visible = false
+position = Vector2(0, -142)
+scale = Vector2(3.28, 3.28)
+
+[node name="PointLight2D" type="PointLight2D" parent="Airpocket"]
+rotation = 4.71238
+scale = Vector2(0.317073, 0.317072)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_344ge")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_fdnlq")
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -505.0
+offset_top = -983.0
+offset_right = 695.0
+offset_bottom = -353.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.384056, 0.765958)
+size_flags_horizontal = 4
+texture = ExtResource("2_bo1nx")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-1, 0)
+occluder = SubResource("OccluderPolygon2D_344ge")

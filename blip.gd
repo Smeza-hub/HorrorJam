@@ -43,16 +43,6 @@ func _on_body_entered(body: Node) -> void:
 		
 		
 		
-		#collision_count +=1
-
-		#if collision_count >= max_collision:
-			#print("collided")
-			#var color = light.color
-			#while color.a != 0:
-				#color.a = move_toward(color.a,0,100)
-				#light.color = color
-				#await get_tree().create_timer(0.05).timeout
-			#queue_free()
 
 
 func _on_timer_timeout() -> void:

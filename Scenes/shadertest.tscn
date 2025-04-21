@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://e6ljs2wnb1bx"]
+
+[ext_resource type="Shader" uid="uid://dkqn73afqqdtv" path="res://test.gdshader" id="1_0ji2x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_djt6b"]
+render_priority = 0
+shader = ExtResource("1_0ji2x")
+
+[sub_resource type="Gradient" id="Gradient_oxnsq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4foj3"]
+gradient = SubResource("Gradient_oxnsq")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_djt6b")
+offset_right = 752.0
+offset_bottom = 363.0
+texture = SubResource("GradientTexture2D_4foj3")

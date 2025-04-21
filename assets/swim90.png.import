@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ufaliflhky58"
-path="res://.godot/imported/swim675fixed.png-51086c55112b4572d0179d7a03db01c8.ctex"
+uid="uid://bd1bn1x31njal"
+path="res://.godot/imported/swim90.png-b7ff93ae42f2c57d5e3989d544b566ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/swim675fixed.png"
-dest_files=["res://.godot/imported/swim675fixed.png-51086c55112b4572d0179d7a03db01c8.ctex"]
+source_file="res://assets/swim90.png"
+dest_files=["res://.godot/imported/swim90.png-b7ff93ae42f2c57d5e3989d544b566ea.ctex"]
 
 [params]
 
