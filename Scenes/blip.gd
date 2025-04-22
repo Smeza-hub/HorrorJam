@@ -13,6 +13,7 @@ var collided: bool
 func spawn():
 	pass
 func _ready() -> void:
+	add_to_group("projectiles")
 	direction = Vector2.RIGHT.rotated(global_rotation)
 	linear_velocity = direction * speed
 	timer.start((scream_strength/20))
@@ -21,16 +22,11 @@ func _ready() -> void:
 	collided = false
 	print(bliplight.color.a8)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _integrate_forces(state):
-	pass
-	
-func _process(delta: float) -> void:
-	pass
 
 
 func _on_body_entered(body: Node) -> void:
 	#check if the blip collides with the Tilemap. If so it disables the timer and slowly fades out
-	if body is TileMapLayer:
+	if body is TileMapLayer || body is StaticBody2D :
 		collided = true
 		linear_velocity = Vector2(0,0)
 		var color = bliplight.color

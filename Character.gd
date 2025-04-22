@@ -1,6 +1,5 @@
 extends CharacterBody2D
 @onready var sprite_2d: AnimatedSprite2D = $Sprite2D
-@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var stamina: ProgressBar = $"../CanvasLayer2/Stamina"
 @onready var health: ProgressBar = $"../CanvasLayer2/Health"
 @onready var bodycol: CollisionShape2D = $bodycol
@@ -12,7 +11,7 @@ extends CharacterBody2D
 @export var blip_count:int =1
 @export_range(0,360) var arc: float = 0
 
-@export var RANDOM_SHAKE_STRENGTH: float =1.0
+@export var RANDOM_SHAKE_STRENGTH: float =10.0
 @export var SHAKE_DECAY_RATE: float = 5.0
 @onready var rand = RandomNumberGenerator.new()
 
@@ -30,6 +29,8 @@ var current_health:int
 
 var can_scream: bool
 var in_air_pocket:bool
+var air_surface_y = 0.0
+var float_speed:float = -30.0
 
 var shake_strength: float= 0.0
 
@@ -75,7 +76,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_stamina()
 	handle_health()
-	print(in_air_pocket)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	shake_strength = lerp(shake_strength, 0.0, SHAKE_DECAY_RATE * delta)
 	camera.offset = get_random_offset()
@@ -88,7 +88,6 @@ func handle_animation():
 	
 	
 	var segment = int(floor(angle / (PI / 8)))  # 16 total segments
-	print(segment)
 	match segment:
 		0,8: 
 			switch_animation("swim_0")
@@ -137,6 +136,7 @@ func handle_stamina():
 	stamina.value = current_stamina
 	if in_air_pocket:
 		recover_stamina()
+		velocity.y = move_toward(velocity.y, 0,3.0)
 	else:
 		current_stamina = move_toward(current_stamina, 0 , 10)
 
@@ -191,5 +191,4 @@ func _on_headtracker_area_entered(area: Area2D) -> void:
 func _on_headtracker_area_exited(area: Area2D) -> void:
 	if area.name == "Airpocket":
 		in_air_pocket = false
-
 	
