@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://d28vh2btjtik7"]
+
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="1_pmta3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6iyac"]
+frequency = 0.0491
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdnlq"]
+noise = SubResource("FastNoiseLite_6iyac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hptm8"]
+shader = ExtResource("1_pmta3")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_fdnlq")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.28
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.65
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Gradient" id="Gradient_jkdf5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsu2k"]
+gradient = SubResource("Gradient_jkdf5")
+
+[node name="water" type="Polygon2D"]
+material = SubResource("ShaderMaterial_hptm8")
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_wsu2k")
+polygon = PackedVector2Array(-204, -201, -54, -249, -51.0744, -239.248, -8, -192, -13, -194, -17, -189, -18, -176, 51, -176, 51, -189, 29, -189, 19, -204, 58, -250, 167, -185, 676, -165, 1255, -12, 1322, 515, 482, 520, -209, 515)

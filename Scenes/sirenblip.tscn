@@ -4,7 +4,6 @@
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_p7p15"]
 friction = 0.0
-bounce = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(6, 11.7354)
@@ -31,7 +30,7 @@ fill_from = Vector2(0, 0.573395)
 [node name="SirenGlop" type="RigidBody2D"]
 z_index = 1
 collision_layer = 4
-collision_mask = 10
+collision_mask = 11
 mass = 0.001
 physics_material_override = SubResource("PhysicsMaterial_p7p15")
 gravity_scale = 0.0

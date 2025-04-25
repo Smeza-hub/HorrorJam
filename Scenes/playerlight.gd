@@ -21,6 +21,11 @@ func _ready():
 	flicker_noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
 	flicker_noise.frequency = 1.0  # You can tweak this later
 func _process(delta):
+	if get_parent().spirit_light:
+		spirit_light(delta)
+	else:
+		hide()
+func spirit_light(delta):
 	if target_node == null:
 		return
 
@@ -45,3 +50,4 @@ func _process(delta):
 	if flicker_enabled and self is Light2D:
 		var flicker = flicker_noise.get_noise_1d(noise_time * flicker_speed) * flicker_intensity
 		energy = base_energy + flicker
+	

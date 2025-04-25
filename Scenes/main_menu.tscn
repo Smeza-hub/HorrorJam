@@ -1,0 +1,138 @@
+[gd_scene load_steps=16 format=3 uid="uid://c7tyrvyulqh4a"]
+
+[ext_resource type="Script" uid="uid://hpdsticio641" path="res://main_menu.gd" id="1_28flt"]
+[ext_resource type="Script" uid="uid://c3wj76bbekjnp" path="res://Scenes/color_rect.gd" id="2_48xlc"]
+[ext_resource type="Texture2D" uid="uid://c0hye3pssomk4" path="res://assets/black-monochrome-abstract-rock-wood-texture-cave-Formation-limestone-material-darkness-soil-geology-black-and-white-monochrome-photography-177939-2743504821.jpg" id="2_ce3w2"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="4_n45e2"]
+
+[sub_resource type="Gradient" id="Gradient_1ehe0"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ce3w2"]
+gradient = SubResource("Gradient_1ehe0")
+width = 364
+
+[sub_resource type="Gradient" id="Gradient_ce3w2"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n45e2"]
+gradient = SubResource("Gradient_ce3w2")
+width = 720
+height = 720
+fill = 1
+fill_from = Vector2(0.487179, 0.508547)
+fill_to = Vector2(0.786325, 0.17094)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6iyac"]
+frequency = 0.0491
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdnlq"]
+noise = SubResource("FastNoiseLite_6iyac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hptm8"]
+shader = ExtResource("4_n45e2")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_fdnlq")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.28
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.65
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Gradient" id="Gradient_jkdf5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsu2k"]
+gradient = SubResource("Gradient_jkdf5")
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_28flt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1440.0
+offset_bottom = 900.0
+texture = ExtResource("2_ce3w2")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.0
+offset_top = -209.0
+offset_right = 182.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+texture = SubResource("GradientTexture2D_ce3w2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 86
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_48xlc")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(622, 347)
+scale = Vector2(1.28, 1.28)
+texture = SubResource("GradientTexture2D_n45e2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -13.0
+offset_right = 28.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+
+[node name="Exit" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = 159.0
+offset_right = 19.0
+offset_bottom = 190.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit"
+
+[node name="water" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_hptm8")
+position = Vector2(161, 215)
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_wsu2k")
+polygon = PackedVector2Array(-204, -201, 1119, -213, 1119, 514, -209, 515)
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/Exit" to="." method="_on_exit_pressed"]

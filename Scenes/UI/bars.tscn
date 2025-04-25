@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://uv61swifhk2"]
+
+[ext_resource type="PackedScene" uid="uid://dpn28gqewuy8i" path="res://Scenes/stamina.tscn" id="1_qvicc"]
+[ext_resource type="PackedScene" uid="uid://di51fknrbxs4e" path="res://Scenes/health.tscn" id="2_7c25d"]
+
+[node name="Bars" type="CanvasLayer"]
+
+[node name="Stamina" parent="." instance=ExtResource("1_qvicc")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -26.0
+offset_right = 145.0
+offset_bottom = -16.0
+grow_vertical = 0
+
+[node name="Health" parent="." instance=ExtResource("2_7c25d")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -43.0
+offset_right = 145.0
+offset_bottom = -33.0
+grow_vertical = 0

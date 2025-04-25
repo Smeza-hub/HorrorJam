@@ -1,14 +1,19 @@
-[gd_scene load_steps=166 format=3 uid="uid://lx2hc8f06wwm"]
+[gd_scene load_steps=164 format=3 uid="uid://lx2hc8f06wwm"]
 
 [ext_resource type="Script" uid="uid://btd31rnkuhxkc" path="res://Character.gd" id="1_ushfy"]
+[ext_resource type="PackedScene" uid="uid://dsltd0t0j4hyq" path="res://Scenes/blood.tscn" id="2_kq7hj"]
 [ext_resource type="PackedScene" uid="uid://c7rgh6aa5b1gc" path="res://Scenes/blip.tscn" id="2_nytcm"]
 [ext_resource type="Texture2D" uid="uid://bd1bn1x31njal" path="res://assets/swim90.png" id="3_reotu"]
 [ext_resource type="Texture2D" uid="uid://dmfuc443fx3dx" path="res://assets/swim675.png" id="4_a5ess"]
 [ext_resource type="Texture2D" uid="uid://dhokvlrl2fbdc" path="res://assets/swim225.png" id="6_a5ess"]
 [ext_resource type="Texture2D" uid="uid://1mo3serb1hhq" path="res://assets/swim45.png" id="6_reotu"]
 [ext_resource type="Texture2D" uid="uid://cgb8amxax70o1" path="res://assets/swim0.png" id="7_wbia7"]
-[ext_resource type="Script" uid="uid://ciautagksa68k" path="res://Scenes/playerlight.gd" id="8_a5ess"]
 [ext_resource type="Texture2D" uid="uid://dcrmy1a0eqeyg" path="res://icon.svg" id="8_wbia7"]
+[ext_resource type="Texture2D" uid="uid://1t8bqdhbpabf" path="res://assets/prop_thickness075-1853403905.png" id="11_l1rcp"]
+[ext_resource type="PackedScene" uid="uid://ia54as88lvny" path="res://Scenes/Level/spiritlight.tscn" id="12_l1rcp"]
+[ext_resource type="Script" uid="uid://dx3eajlg13khx" path="res://Scenes/headlamp.gd" id="12_le1tg"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l1rcp"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ushfy"]
 
@@ -1065,43 +1070,10 @@ size = Vector2(20, 18.1819)
 radius = 5.0
 height = 45.0
 
-[sub_resource type="Gradient" id="Gradient_a5ess"]
-offsets = PackedFloat32Array(0.603896, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wbia7"]
-gradient = SubResource("Gradient_a5ess")
-width = 1024
-height = 1024
-fill = 1
-fill_from = Vector2(0.509174, 0.53211)
-fill_to = Vector2(0.0963303, 0.853211)
-
-[sub_resource type="Gradient" id="Gradient_wbia7"]
-offsets = PackedFloat32Array(0, 0.0194805, 0.415584, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.499608, 0.499608, 0.499608, 0.472727, 0.463866, 0.463866, 0.463866, 0.435065, 0.0509804, 0.0509804, 0.0509804, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_kq7hj"]
-gradient = SubResource("Gradient_wbia7")
-width = 2299
-height = 599
-fill = 1
-fill_from = Vector2(0.62844, 0.528174)
-fill_to = Vector2(0.192661, 0.528174)
-
-[sub_resource type="Gradient" id="Gradient_kq7hj"]
-offsets = PackedFloat32Array(0, 0.519481)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7iw6i"]
-gradient = SubResource("Gradient_kq7hj")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[node name="Node2D" type="CharacterBody2D"]
-rotation = 0.000604354
-collision_mask = 2
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 18
 script = ExtResource("1_ushfy")
+blood_scene = ExtResource("2_kq7hj")
 blip = ExtResource("2_nytcm")
 blip_count = 180
 arc = 360.0
@@ -1118,12 +1090,12 @@ scale = Vector2(17.76, 4.52)
 texture = ExtResource("8_wbia7")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("CanvasItemMaterial_l1rcp")
 position = Vector2(0, 5)
 scale = Vector2(0.399999, 0.399999)
 sprite_frames = SubResource("SpriteFrames_q5mnj")
 animation = &"swim_0"
 autoplay = "swim_0"
-frame_progress = 0.264578
 offset = Vector2(0, -12.5)
 flip_h = true
 
@@ -1142,6 +1114,16 @@ position = Vector2(1.52588e-05, -7.62939e-06)
 scale = Vector2(1.1, 1.1)
 shape = SubResource("RectangleShape2D_reotu")
 
+[node name="Headlamp" type="PointLight2D" parent="Sprite2D/headtracker"]
+position = Vector2(4.45295, -1.57441)
+rotation = -0.16057
+scale = Vector2(2.50001, 5.16251)
+color = Color(0.859171, 0.777041, 0.288537, 1)
+energy = 3.0
+texture = ExtResource("11_l1rcp")
+offset = Vector2(163.201, 0.354464)
+script = ExtResource("12_le1tg")
+
 [node name="bodycol" type="CollisionShape2D" parent="."]
 position = Vector2(11, -3)
 rotation = 1.28107
@@ -1156,35 +1138,11 @@ drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" parent="." instance=ExtResource("12_l1rcp")]
 position = Vector2(7, -14)
-scale = Vector2(0.01, 0.01)
-color = Color(0.78329, 0.729716, 0.37184, 1)
-energy = 4.0
-blend_mode = 2
-texture = SubResource("GradientTexture2D_wbia7")
-offset = Vector2(2672.31, -1.52588e-05)
-texture_scale = 4.0
-script = ExtResource("8_a5ess")
-target_node = NodePath("../Sprite2D/headtracker")
-flicker_intensity = 0.5
-flicker_speed = 1.0
-base_energy = 1.0
 
-[node name="PointLight2D" type="PointLight2D" parent="PointLight2D"]
-position = Vector2(-2613.1, 300)
-scale = Vector2(12.0375, 13)
-color = Color(0.690196, 0.639216, 0.298039, 1)
-energy = 4.0
-blend_mode = 2
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_kq7hj")
-offset = Vector2(-384.136, -25.2021)
-
-[node name="Sprite2D" type="Sprite2D" parent="PointLight2D"]
-position = Vector2(2724.72, 0)
-scale = Vector2(52.9998, 52.9998)
-texture = SubResource("GradientTexture2D_7iw6i")
+[node name="PointLight2D" parent="PointLight2D" index="0"]
+scale = Vector2(78.882, 126.805)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -1192,5 +1150,10 @@ position = Vector2(-24, -22)
 scale = Vector2(0.14226, -0.130773)
 color = Color(0, 0, 0, 1)
 
+[node name="Timer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Sprite2D/headtracker" to="." method="_on_headtracker_area_entered"]
 [connection signal="area_exited" from="Sprite2D/headtracker" to="." method="_on_headtracker_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="PointLight2D"]

@@ -1,18 +1,19 @@
-[gd_scene load_steps=25 format=4 uid="uid://caomt63en3jnn"]
+[gd_scene load_steps=21 format=4 uid="uid://caomt63en3jnn"]
 
+[ext_resource type="Texture2D" uid="uid://c0hye3pssomk4" path="res://assets/black-monochrome-abstract-rock-wood-texture-cave-Formation-limestone-material-darkness-soil-geology-black-and-white-monochrome-photography-177939-2743504821.jpg" id="1_d1ilt"]
+[ext_resource type="Script" uid="uid://cqmnxs2mg7ltx" path="res://Scenes/main.gd" id="1_fdnlq"]
 [ext_resource type="PackedScene" uid="uid://lx2hc8f06wwm" path="res://Scenes/character.tscn" id="1_jjgbg"]
-[ext_resource type="Texture2D" uid="uid://b0io18j6f6epk" path="res://ac1379cc-16fa-407d-aa92-0b2b74a4e92b-2483615961.png" id="2_bo1nx"]
 [ext_resource type="Texture2D" uid="uid://b3da3kio60f85" path="res://assets/CaveG.png" id="3_8gbba"]
-[ext_resource type="Script" uid="uid://c3re8v6pgov6w" path="res://Scenes/point_light_2d_2.gd" id="4_jjvhh"]
-[ext_resource type="PackedScene" uid="uid://dpn28gqewuy8i" path="res://Scenes/stamina.tscn" id="5_kry3j"]
-[ext_resource type="PackedScene" uid="uid://di51fknrbxs4e" path="res://Scenes/health.tscn" id="6_6bp64"]
 [ext_resource type="PackedScene" uid="uid://dllmd5x4uvxvd" path="res://Scenes/airpocket.tscn" id="6_21xkr"]
-[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="7_344ge"]
-[ext_resource type="Texture2D" uid="uid://dr6tbir571fbm" path="res://assets/leftrock.png" id="7_hptm8"]
-[ext_resource type="Texture2D" uid="uid://dvf71v4dpwuy" path="res://assets/rightrock.png" id="8_d1ilt"]
+[ext_resource type="PackedScene" uid="uid://bgmkuj8hv57tu" path="res://assets/Level/bigrock.tscn" id="6_wsu2k"]
+[ext_resource type="Texture2D" uid="uid://dr6tbir571fbm" path="res://assets/Level/leftrock.png" id="7_hptm8"]
+[ext_resource type="Texture2D" uid="uid://dvf71v4dpwuy" path="res://assets/Level/rightrock.png" id="8_d1ilt"]
+[ext_resource type="Script" uid="uid://c3wj76bbekjnp" path="res://Scenes/color_rect.gd" id="8_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://uv61swifhk2" path="res://Scenes/UI/bars.tscn" id="9_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://j62islsgj2oa" path="res://Scenes/watersurface.tscn" id="10_6iyac"]
 [ext_resource type="PackedScene" uid="uid://b5nj0ymggjivm" path="res://Scenes/siren.tscn" id="11_d1ilt"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
+[ext_resource type="PackedScene" uid="uid://d28vh2btjtik7" path="res://Scenes/Level/water.tscn" id="11_jkdf5"]
+[ext_resource type="PackedScene" uid="uid://day16lo5da8jt" path="res://Scenes/ui.tscn" id="14_jkdf5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jjvhh"]
 texture = ExtResource("3_8gbba")
@@ -903,158 +904,140 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_jjvhh")
 
-[sub_resource type="Gradient" id="Gradient_8gbba"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-metadata/_snap_count = 18
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hptm8"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jjvhh"]
-gradient = SubResource("Gradient_8gbba")
-fill = 1
-fill_from = Vector2(0.600917, 0.490826)
-fill_to = Vector2(0.238532, 0.752294)
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_344ge"]
+polygon = PackedVector2Array(53, 16, 103, -53, 117, 16, 110, 13, 105, 15, 95, 16, 88, 8, 89, 3, 78, -1, 65, 1, 65, 11, 62, 15, 58, 12)
 
 [sub_resource type="Gradient" id="Gradient_6bp64"]
-offsets = PackedFloat32Array(0.00649351, 0.0324675, 0.194805)
-colors = PackedColorArray(0, 0, 0, 0, 0.320513, 0.320513, 0.320513, 0.320513, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0.409091, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.320513, 0.320513, 0.320513, 0.320513)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_344ge"]
 gradient = SubResource("Gradient_6bp64")
-fill_from = Vector2(0.477064, 1)
-fill_to = Vector2(0.486239, 0)
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_344ge"]
-polygon = PackedVector2Array(56, -55, 103, -53, 101, -1, 56, -1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_344ge"]
-noise_type = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ynf5e"]
-noise = SubResource("FastNoiseLite_344ge")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
-noise_type = 2
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
-noise = SubResource("FastNoiseLite_hptm8")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdnlq"]
-shader = ExtResource("7_344ge")
-shader_parameter/waterNoise = SubResource("NoiseTexture2D_d1ilt")
-shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_ynf5e")
-shader_parameter/waterColor = Color(0.180392, 0.372549, 0.756863, 0)
-shader_parameter/colorCorection = 0.0
-shader_parameter/distortionForce = 0.01
-shader_parameter/WDBrightness = 0.3
-shader_parameter/WDFreq = 0.6
-shader_parameter/WDSize = 0.95
-shader_parameter/WDSpeed = 2.5
-shader_parameter/tiling = Vector2(1, 1)
-shader_parameter/offSetSpeed = Vector2(0.01, 0.1)
-shader_parameter/backGroundDirX = 0.01
-shader_parameter/backGroundDirY = 0.01
+width = 35
+height = 30
+fill = 1
+fill_from = Vector2(0.504587, 0.41208)
+fill_to = Vector2(0.449541, 1)
 
 [node name="Main" type="Node"]
+script = ExtResource("1_fdnlq")
+
+[node name="Black-monochrome-abstract-rock-wood-texture-cave-formation-limestone-material-darkness-soil-geology-black-and-white-monochrome-photography-177939-2743504821" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(227, 87)
+texture = ExtResource("1_d1ilt")
+region_enabled = true
+region_rect = Rect2(0, 0, 2000, 2000)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Level" type="Node" parent="."]
-
-[node name="LevelHitbox" type="StaticBody2D" parent="Level"]
-collision_layer = 2
-collision_mask = 6
-physics_material_override = SubResource("PhysicsMaterial_hptm8")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/LevelHitbox"]
-position = Vector2(566, 149)
-scale = Vector2(0.907258, 0.952317)
-build_mode = 1
-polygon = PackedVector2Array(-62.8266, 404.277, -41.8844, 404.277, -35.2711, 403.227, 7.71558, 392.726, 25.3511, 390.626, 36.3734, 390.626, 51.8044, 394.827, 58.4178, 394.827, 63.9289, 391.676, 66.1334, 386.426, 68.3378, 384.326, 70.5422, 378.025, 72.7467, 369.625, 73.8489, 361.224, 74.9511, 351.774, 76.0533, 298.22, 73.8489, 280.369, 70.5422, 265.668, 70.5422, 256.217, 68.3378, 242.566, 68.3378, 228.915, 66.1334, 218.415, 66.1334, 195.313, 73.8489, 168.011, 73.8489, 151.21, 69.44, 137.559, 67.2356, 121.808, 74.9511, 79.8054, 73.8489, 56.7038, 73.8489, 45.153, 74.9511, 31.5021, 77.1556, 17.8512, 77.1556, 2.10014, 78.2578, 2.10014, 79.36, -7.35049, 77.1556, -7.35049, 77.1556, -44.8064, 78.2578, -45.153, 78.2578, -64.0543, 77.1556, -64.0543, 74.9511, -78.7553, 70.5422, -90.3061, 58.4178, -95.5564, 52.2786, -96.0881, 49.6, -96.6065, 40.7822, -96.6065, 33.0667, -95.5564, 27.5556, -94.5064, 19.84, -93.4563, 17.6356, -92.4062, -7.71552, -93.4563, -22.0444, -93.4563, -61.7244, -89.256, -74.951, -87.1559, -91.4844, -82.9556, -108.018, -68.2546, -111.324, -61.9542, -112.427, -55.6537, -111.324, -45.153, -109.12, -35.7024, -106.916, -22.0515, -108.018, -14.701, -109.12, 3.15021, -110.222, 12.6008, -110.222, 24.1516, -111.324, 25.2017, -111.324, 35.7024, -112.427, 36.7525, -113.996, 44.5249, -115.733, 49.3533, -117.938, 64.0543, -116.836, 71.4048, -112.427, 99.7567, -112.427, 121.808, -121.244, 161.711, -120.142, 215.264, -119.04, 248.867, -117.938, 270.918, -116.836, 283.519, -116.836, 309.771, -119.04, 322.372, -119.04, 338.123, -108.018, 363.324, -103.609, 381.176, -99.2, 389.576, -90.3822, 397.977, -81.5644, 401.127)
-
-[node name="TextureRect2" type="TextureRect" parent="Level"]
-offset_left = 286.0
-offset_top = 54.0
-offset_right = 786.0
-offset_bottom = 554.0
-texture = ExtResource("7_hptm8")
-
-[node name="TextureRect3" type="TextureRect" parent="Level"]
-offset_left = 533.0
-offset_top = -285.0
-offset_right = 1533.0
-offset_bottom = 715.0
-texture = ExtResource("8_d1ilt")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 0.933333)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(-1, -11)
 tile_map_data = PackedByteArray("AAD4//3/AAAgAAgAAAD4//7/AAAgAAkAAAD4////AAAgAAoAAAD4/wAAAAAgAAsAAAD5//3/AAAhAAgAAAD5//7/AAAhAAkAAAD5////AAAhAAoAAAD5/wAAAAAhAAsAAAD6//3/AAAiAAgAAAD6//7/AAAiAAkAAAD6////AAAiAAoAAAD6/wAAAAAiAAsAAAD7//3/AAAjAAgAAAD7//7/AAAjAAkAAAD7////AAAjAAoAAAD7/wAAAAAjAAsAAAD4/wEAAAAgAAgAAAD4/wIAAAAgAAkAAAD4/wMAAAAgAAoAAAD4/wQAAAAgAAsAAAD5/wEAAAAhAAgAAAD5/wIAAAAhAAkAAAD5/wMAAAAhAAoAAAD5/wQAAAAhAAsAAAD6/wEAAAAiAAgAAAD6/wIAAAAiAAkAAAD6/wMAAAAiAAoAAAD6/wQAAAAiAAsAAAD7/wEAAAAjAAgAAAD7/wIAAAAjAAkAAAD7/wMAAAAjAAoAAAD7/wQAAAAjAAsAAAD3/wUAAAAgAAgAAAD3/wYAAAAgAAkAAAD3/wcAAAAgAAoAAAD3/wgAAAAgAAsAAAD4/wUAAAAhAAgAAAD4/wYAAAAhAAkAAAD4/wcAAAAhAAoAAAD4/wgAAAAhAAsAAAD5/wUAAAAiAAgAAAD5/wYAAAAiAAkAAAD5/wcAAAAiAAoAAAD5/wgAAAAiAAsAAAD6/wUAAAAjAAgAAAD6/wYAAAAjAAkAAAD6/wcAAAAjAAoAAAD6/wgAAAAjAAsAAAD1/wkAAAAgAAgAAAD1/woAAAAgAAkAAAD1/wsAAAAgAAoAAAD1/wwAAAAgAAsAAAD2/wkAAAAhAAgAAAD2/woAAAAhAAkAAAD2/wsAAAAhAAoAAAD2/wwAAAAhAAsAAAD3/wkAAAAiAAgAAAD3/woAAAAiAAkAAAD3/wsAAAAiAAoAAAD3/wwAAAAiAAsAAAD4/wkAAAAjAAgAAAD4/woAAAAjAAkAAAD4/wsAAAAjAAoAAAD4/wwAAAAjAAsAAAADAP3/AAAgAAgAAAADAP7/AAAgAAkAAAADAP//AAAgAAoAAAADAAAAAAAgAAsAAAAEAP3/AAAhAAgAAAAEAP7/AAAhAAkAAAAEAP//AAAhAAoAAAAEAAAAAAAhAAsAAAAFAP3/AAAiAAgAAAAFAP7/AAAiAAkAAAAFAP//AAAiAAoAAAAFAAAAAAAiAAsAAAAGAP3/AAAjAAgAAAAGAP7/AAAjAAkAAAAGAP//AAAjAAoAAAAGAAAAAAAjAAsAAAADAAEAAAAgAAgAAAADAAIAAAAgAAkAAAADAAMAAAAgAAoAAAADAAQAAAAgAAsAAAAEAAEAAAAhAAgAAAAEAAIAAAAhAAkAAAAEAAMAAAAhAAoAAAAEAAQAAAAhAAsAAAAFAAEAAAAiAAgAAAAFAAIAAAAiAAkAAAAFAAMAAAAiAAoAAAAFAAQAAAAiAAsAAAAGAAEAAAAjAAgAAAAGAAIAAAAjAAkAAAAGAAMAAAAjAAoAAAAGAAQAAAAjAAsAAAACAAUAAAAgAAgAAAACAAYAAAAgAAkAAAACAAcAAAAgAAoAAAACAAgAAAAgAAsAAAADAAUAAAAhAAgAAAADAAYAAAAhAAkAAAADAAcAAAAhAAoAAAADAAgAAAAhAAsAAAAEAAUAAAAiAAgAAAAEAAYAAAAiAAkAAAAEAAcAAAAiAAoAAAAEAAgAAAAiAAsAAAAFAAUAAAAjAAgAAAAFAAYAAAAjAAkAAAAFAAcAAAAjAAoAAAAFAAgAAAAjAAsAAAABAAkAAAAgAAgAAAABAAoAAAAgAAkAAAABAAsAAAAgAAoAAAABAAwAAAAgAAsAAAACAAkAAAAhAAgAAAACAAoAAAAhAAkAAAACAAsAAAAhAAoAAAACAAwAAAAhAAsAAAADAAkAAAAiAAgAAAADAAoAAAAiAAkAAAADAAsAAAAiAAoAAAADAAwAAAAiAAsAAAAEAAkAAAAjAAgAAAAEAAoAAAAjAAkAAAAEAAsAAAAjAAoAAAAEAAwAAAAjAAsAAAD//w0AAAAgAAgAAAD//w4AAAAgAAkAAAD//w8AAAAgAAoAAAD//xAAAAAgAAsAAAAAAA0AAAAhAAgAAAAAAA4AAAAhAAkAAAAAAA8AAAAhAAoAAAAAABAAAAAhAAsAAAABAA0AAAAiAAgAAAABAA4AAAAiAAkAAAABAA8AAAAiAAoAAAABABAAAAAiAAsAAAACAA0AAAAjAAgAAAACAA4AAAAjAAkAAAACAA8AAAAjAAoAAAACABAAAAAjAAsAAAADAPT/AAAiAAsAAAADAPX/AAAgAAkAAAADAPb/AAAgAAoAAAADAPf/AAAgAAsAAAAEAPT/AAAhAAoAAAAEAPX/AAAhAAkAAAAEAPb/AAAhAAoAAAAEAPf/AAAhAAsAAAAFAPT/AAAiAAoAAAAFAPX/AAAiAAkAAAAFAPb/AAAiAAoAAAAFAPf/AAAiAAsAAAAGAPT/AAAjAAgAAAAGAPX/AAAjAAkAAAAGAPb/AAAjAAoAAAAGAPf/AAAjAAsAAAD7//T/AAAgAAgAAAD7//X/AAAgAAkAAAD7//b/AAAgAAoAAAD7//f/AAAgAAsAAAD8//T/AAAhAAkAAAD8//X/AAAhAAoAAAD8//b/AAAhAAoAAAD8//f/AAAhAAsAAAD9//T/AAAiAAkAAAD9//X/AAAiAAoAAAD9//b/AAAiAAoAAAD9//f/AAAiAAsAAAD+//T/AAAiAAsAAAD+//X/AAAjAAkAAAD+//b/AAAjAAoAAAD+//f/AAAjAAsAAAD3//T/AAAgAAgAAAD3//X/AAAgAAkAAAD3//b/AAAgAAoAAAD3//f/AAAgAAsAAAD4//T/AAAhAAgAAAD4//X/AAAhAAkAAAD4//b/AAAhAAoAAAD4//f/AAAhAAsAAAD5//T/AAAiAAgAAAD5//X/AAAiAAkAAAD5//b/AAAiAAoAAAD5//f/AAAiAAsAAAD6//T/AAAjAAgAAAD6//X/AAAjAAkAAAD6//b/AAAjAAoAAAD6//f/AAAjAAsAAADz//T/AAAgAAgAAADz//X/AAAgAAkAAADz//b/AAAgAAoAAADz//f/AAAgAAsAAAD0//T/AAAhAAgAAAD0//X/AAAhAAkAAAD0//b/AAAhAAoAAAD0//f/AAAhAAsAAAD1//T/AAAiAAgAAAD1//X/AAAiAAkAAAD1//b/AAAiAAoAAAD1//f/AAAiAAsAAAD2//T/AAAjAAgAAAD2//X/AAAjAAkAAAD2//b/AAAjAAoAAAD2//f/AAAjAAsAAAD0//z/AAAgAAgAAAD0//3/AAAgAAkAAAD0//7/AAAgAAoAAAD0////AAAgAAsAAAD1//z/AAAhAAgAAAD1//3/AAAhAAkAAAD1//7/AAAhAAoAAAD1////AAAhAAsAAAD2//z/AAAiAAgAAAD2//3/AAAiAAkAAAD2//7/AAAiAAoAAAD2////AAAiAAsAAAD3//z/AAAjAAgAAAD3//3/AAAjAAkAAAD3//7/AAAjAAoAAAD3////AAAjAAsAAAAHAPz/AAAgAAgAAAAHAP3/AAAgAAkAAAAHAP7/AAAgAAoAAAAHAP//AAAgAAsAAAAIAPz/AAAhAAgAAAAIAP3/AAAhAAkAAAAIAP7/AAAhAAoAAAAIAP//AAAhAAsAAAAJAPz/AAAiAAgAAAAJAP3/AAAiAAkAAAAJAP7/AAAiAAoAAAAJAP//AAAiAAsAAAAKAPz/AAAjAAgAAAAKAP3/AAAjAAkAAAAKAP7/AAAjAAoAAAAKAP//AAAjAAsAAAAHAPX/AAAgAAgAAAAHAPb/AAAgAAkAAAAHAPf/AAAgAAoAAAAHAPj/AAAgAAsAAAAIAPX/AAAhAAgAAAAIAPb/AAAhAAkAAAAIAPf/AAAhAAoAAAAIAPj/AAAhAAsAAAAJAPX/AAAiAAgAAAAJAPb/AAAiAAkAAAAJAPf/AAAiAAoAAAAJAPj/AAAiAAsAAAAKAPX/AAAjAAgAAAAKAPb/AAAjAAkAAAAKAPf/AAAjAAoAAAAKAPj/AAAjAAsAAAD///D/AAAgAAgAAAD///H/AAAjAAgAAAD///L/AAAhAAkAAAD///P/AAAhAAoAAAAAAPD/AAAhAAgAAAAAAPH/AAAhAAkAAAAAAPL/AAAhAAkAAAAAAPP/AAAhAAoAAAABAPD/AAAiAAgAAAABAPH/AAAgAAgAAAABAPL/AAAiAAkAAAABAPP/AAAiAAoAAAACAPD/AAAjAAgAAAACAPH/AAAhAAgAAAACAPL/AAAhAAkAAAACAPP/AAAhAAoAAAD8//H/AAAgAAgAAAD8//L/AAAgAAkAAAD8//P/AAAgAAoAAAD9//H/AAAhAAgAAAD9//L/AAAhAAkAAAD9//P/AAAhAAoAAAD+//H/AAAiAAgAAAD+//L/AAAiAAkAAAD+//P/AAAiAAoAAAD///T/AAAjAAsAAAABAPT/AAAgAAsAAAACAPT/AAAhAAsAAAADAPH/AAAiAAgAAAADAPL/AAAiAAkAAAADAPP/AAAiAAoAAAAEAPH/AAAjAAgAAAAEAPL/AAAjAAkAAAAEAPP/AAAhAAkAAAAFAPP/AAAiAAkAAAA=")
 tile_set = SubResource("TileSet_kry3j")
 
-[node name="Node2D" parent="." instance=ExtResource("1_jjgbg")]
-position = Vector2(644, 20)
+[node name="Level" type="Node" parent="."]
 
-[node name="PointLight2D2" type="PointLight2D" parent="Node2D"]
+[node name="LevelHitbox" type="StaticBody2D" parent="Level"]
 visible = false
-position = Vector2(-42.625, 11.9375)
-scale = Vector2(1.32813, 1.0625)
-color = Color(0.760825, 0.710673, 0.423438, 1)
-energy = 4.35
-texture = SubResource("GradientTexture2D_jjvhh")
-offset = Vector2(40, -15)
-script = ExtResource("4_jjvhh")
+position = Vector2(-598, 285)
+collision_layer = 2
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_hptm8")
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/LevelHitbox"]
+position = Vector2(869, 161)
+scale = Vector2(0.907258, 0.952317)
+build_mode = 1
+polygon = PackedVector2Array(-62.8266, 404.277, -41.8844, 404.277, -35.2711, 403.227, 7.71558, 392.726, 25.3511, 390.626, 36.3734, 390.626, 51.8044, 394.827, 58.4178, 394.827, 63.9289, 391.676, 66.1334, 386.426, 68.3378, 384.326, 70.5422, 378.025, 72.7467, 369.625, 73.8489, 361.224, 74.9511, 351.774, 76.0533, 298.22, 73.8489, 280.369, 70.5422, 265.668, 70.5422, 256.217, 68.3378, 242.566, 68.3378, 228.915, 66.1334, 218.415, 66.1334, 195.313, 73.8489, 168.011, 73.8489, 151.21, 69.44, 137.559, 67.2356, 121.808, 74.9511, 79.8054, 73.8489, 56.7038, 73.8489, 45.153, 74.9511, 31.5021, 77.1556, 17.8512, 77.1556, 2.10014, 78.2578, 2.10014, 79.36, -7.35049, 77.1556, -7.35049, 77.1556, -44.8064, 78.2578, -45.153, 78.2578, -64.0543, 77.1556, -64.0543, 74.9511, -78.7553, 70.5422, -90.3061, 58.4178, -95.5564, 52.2786, -96.0881, 49.6, -96.6065, 40.7822, -96.6065, 33.0667, -95.5564, 27.5556, -94.5064, 19.84, -93.4563, 17.6356, -92.4062, -7.71552, -93.4563, -22.0444, -93.4563, -61.7244, -89.256, -74.951, -87.1559, -91.4844, -82.9556, -108.018, -68.2546, -111.324, -61.9542, -112.427, -55.6537, -111.324, -45.153, -109.12, -35.7024, -106.916, -22.0515, -108.018, -14.701, -109.12, 3.15021, -110.222, 12.6008, -110.222, 24.1516, -111.324, 25.2017, -111.324, 35.7024, -112.427, 36.7525, -113.996, 44.5249, -115.733, 49.3533, -117.938, 64.0543, -116.836, 71.4048, -112.427, 99.7567, -112.427, 121.808, -121.244, 161.711, -120.142, 215.264, -119.04, 248.867, -117.938, 270.918, -116.836, 283.519, -116.836, 309.771, -119.04, 322.372, -119.04, 338.123, -108.018, 363.324, -103.609, 381.176, -99.2, 389.576, -90.3822, 397.977, -81.5644, 401.127)
 
-[node name="Stamina" parent="CanvasLayer2" instance=ExtResource("5_kry3j")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 45.0
-offset_top = -26.0
-offset_right = 145.0
-offset_bottom = -16.0
-grow_vertical = 0
+[node name="TextureRect2" type="Sprite2D" parent="Level/LevelHitbox"]
+position = Vector2(840, 314)
+texture = ExtResource("7_hptm8")
 
-[node name="Health" parent="CanvasLayer2" instance=ExtResource("6_6bp64")]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 45.0
-offset_top = -43.0
-offset_right = 145.0
-offset_bottom = -33.0
-grow_vertical = 0
+[node name="TextureRect3" type="TextureRect" parent="Level"]
+visible = false
+offset_left = 533.0
+offset_top = -285.0
+offset_right = 1533.0
+offset_bottom = 715.0
+texture = ExtResource("8_d1ilt")
+
+[node name="Node2D" parent="Level" instance=ExtResource("6_wsu2k")]
+position = Vector2(1921, 314)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0646965, 0.0646965, 0.0646965, 0.933333)
+
+[node name="Player" parent="." instance=ExtResource("1_jjgbg")]
+position = Vector2(640, 51)
+
+[node name="Fade" type="ColorRect" parent="Player"]
+visible = false
+z_index = 475
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_jkdf5")
+
+[node name="Bars" parent="." instance=ExtResource("9_jkdf5")]
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-70, -205)
+occluder = SubResource("OccluderPolygon2D_344ge")
+
+[node name="Siren" parent="." instance=ExtResource("11_d1ilt")]
+position = Vector2(251, 135)
+SPEED = 125.0
+
+[node name="Waternodes" type="Node" parent="."]
+
+[node name="water" parent="Waternodes" instance=ExtResource("11_jkdf5")]
+position = Vector2(-1, 0)
+
+[node name="Node2D" parent="Waternodes" instance=ExtResource("10_6iyac")]
+visible = false
+position = Vector2(13, -166)
+scale = Vector2(2.12, 1)
 
 [node name="Airpocket" parent="." instance=ExtResource("6_21xkr")]
-position = Vector2(13, -172)
+position = Vector2(13, -211)
 scale = Vector2(3.28, 3.28)
 
 [node name="PointLight2D" type="PointLight2D" parent="Airpocket"]
+visible = false
+position = Vector2(-1.52439, 1.82927)
 scale = Vector2(0.317073, 0.317072)
+blend_mode = 2
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_344ge")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-position = Vector2(-1, 0)
-occluder = SubResource("OccluderPolygon2D_344ge")
+[node name="UI" parent="." instance=ExtResource("14_jkdf5")]
 
-[node name="Water" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_fdnlq")
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -872.0
-offset_top = -1228.0
-offset_right = 4803.0
-offset_bottom = 651.0
+[node name="Panel" parent="UI" index="0"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -200.0
+offset_right = 200.0
+offset_bottom = 200.0
 grow_horizontal = 2
-grow_vertical = 0
-scale = Vector2(0.384056, 0.765958)
-size_flags_horizontal = 4
-texture = ExtResource("2_bo1nx")
+grow_vertical = 2
 
-[node name="Siren" parent="." instance=ExtResource("11_d1ilt")]
-position = Vector2(471, -86)
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+
+[editable path="UI"]

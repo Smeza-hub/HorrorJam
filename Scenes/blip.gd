@@ -17,17 +17,20 @@ func _ready() -> void:
 	direction = Vector2.RIGHT.rotated(global_rotation)
 	linear_velocity = direction * speed
 	timer.start((scream_strength/20))
-	print(scream_strength)
 	max_collision = round(scream_strength/10)
 	collided = false
-	print(bliplight.color.a8)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 
 func _on_body_entered(body: Node) -> void:
 	#check if the blip collides with the Tilemap. If so it disables the timer and slowly fades out
-	if body is TileMapLayer || body is StaticBody2D :
+	if body is TileMapLayer || body is StaticBody2D || body is CharacterBody2D:
 		collided = true
+		if body.has_method("aggro"):
+			var target = get_node("/root/Main/Player")
+			#body.aggro(target)
+			body.is_attacking = true
+			body.target = target
 		linear_velocity = Vector2(0,0)
 		var color = bliplight.color
 		while color.a > 0:

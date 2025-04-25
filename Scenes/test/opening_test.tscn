@@ -1,0 +1,107 @@
+[gd_scene load_steps=19 format=3 uid="uid://bjtck2gx318dy"]
+
+[ext_resource type="PackedScene" uid="uid://bgmkuj8hv57tu" path="res://assets/Level/bigrock.tscn" id="1_t4401"]
+[ext_resource type="PackedScene" uid="uid://lx2hc8f06wwm" path="res://Scenes/character.tscn" id="2_qw88l"]
+[ext_resource type="PackedScene" uid="uid://cyquafpe8o06s" path="res://Scenes/motionblur.zip.tscn" id="2_wjyeb"]
+[ext_resource type="PackedScene" uid="uid://uv61swifhk2" path="res://Scenes/UI/bars.tscn" id="3_qw88l"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="4_j6jh8"]
+[ext_resource type="PackedScene" uid="uid://c2vymgtgxvq7h" path="res://Scenes/Level/breakpoint.tscn" id="5_lo2hb"]
+[ext_resource type="PackedScene" uid="uid://dllmd5x4uvxvd" path="res://Scenes/airpocket.tscn" id="6_ejnxq"]
+[ext_resource type="PackedScene" uid="uid://3736eccaxja3" path="res://Scenes/Level/spiritlight_env.tscn" id="7_j60hh"]
+[ext_resource type="AudioStream" uid="uid://bdk4lixsq8quf" path="res://assets/Audio/Water ambience.mp3" id="8_jct5a"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6iyac"]
+frequency = 0.0491
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdnlq"]
+noise = SubResource("FastNoiseLite_6iyac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hptm8"]
+shader = ExtResource("4_j6jh8")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_fdnlq")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.28
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.65
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Gradient" id="Gradient_jkdf5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsu2k"]
+gradient = SubResource("Gradient_jkdf5")
+
+[sub_resource type="Gradient" id="Gradient_j60hh"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jct5a"]
+gradient = SubResource("Gradient_j60hh")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.84188, 0.136752)
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource("2_qw88l")]
+position = Vector2(66, -211)
+rotation = -1.309
+blip_count = 150
+
+[node name="water" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_hptm8")
+position = Vector2(-1101, -10)
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_wsu2k")
+polygon = PackedVector2Array(-204, -201, -115, -247, 8, -258, 201, -263, 368, -284, 786, -228, 1115, -240, 1225, -238, 1472, -89, 1480, -87, 1496, -87, 1516, -92, 1528, -95, 1566, -108, 2213, -62, 2456, -57, 2625, -108, 4895, -143, 5205, -140, 5229, 2084, 3915, 2125, 3455, 2015, 3046, 2029, 2918, 1611, 3088, 1330, 3014, 1146, 2780, 1146, 2792, 526, 2951, 509, 3369, 502, 3291, 251, 2834, 283, 2589, 516, -209, 515)
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Bigrock" parent="Level" instance=ExtResource("1_t4401")]
+
+[node name="Node2D" parent="Level" instance=ExtResource("2_wjyeb")]
+position = Vector2(3000, 0)
+
+[node name="Bars" parent="." instance=ExtResource("3_qw88l")]
+
+[node name="breakpoint" parent="." instance=ExtResource("5_lo2hb")]
+position = Vector2(764, 62)
+
+[node name="Airpocket" parent="." instance=ExtResource("6_ejnxq")]
+position = Vector2(-1087, -481)
+scale = Vector2(8.08004, 4.12429)
+
+[node name="PointLight2D" parent="." instance=ExtResource("7_j60hh")]
+position = Vector2(1513, 11)
+offset = Vector2(172.31, -100)
+
+[node name="Sprite2D" parent="PointLight2D" index="0"]
+position = Vector2(0, 0)
+
+[node name="PointLight2D" type="PointLight2D" parent="PointLight2D"]
+scale = Vector2(26.203, 26.203)
+color = Color(0.784314, 0.729412, 0.372549, 1)
+texture = SubResource("GradientTexture2D_jct5a")
+
+[node name="shadow" type="CanvasModulate" parent="."]
+color = Color(0.212305, 0.212305, 0.212305, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_jct5a")
+autoplay = true
+parameters/looping = false
+
+[editable path="PointLight2D"]
