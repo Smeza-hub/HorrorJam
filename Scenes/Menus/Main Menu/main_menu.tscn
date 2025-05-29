@@ -1,0 +1,128 @@
+[gd_scene load_steps=18 format=3 uid="uid://c7tyrvyulqh4a"]
+
+[ext_resource type="Script" uid="uid://hpdsticio641" path="res://Scenes/Menus/Main Menu/main_menu.gd" id="1_tusap"]
+[ext_resource type="PackedScene" uid="uid://lx2hc8f06wwm" path="res://Scenes/Player/Main Player Scene/character.tscn" id="3_8d36y"]
+[ext_resource type="Texture2D" uid="uid://bfvrk1xqmlyvi" path="res://Assets/Textures/Level/mainmenu/reverb.png" id="3_lljoj"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://Assets/Shaders/watersurface.gdshader" id="4_6dr1d"]
+[ext_resource type="Texture2D" uid="uid://b7ayjsoxq1f27" path="res://Assets/Textures/Level/mainmenu/titleonly.png" id="4_8d36y"]
+[ext_resource type="AudioStream" uid="uid://hnhca768bje7" path="res://Assets/Audio/SFX/Water ambience V3.wav" id="5_nm8ig"]
+[ext_resource type="Script" uid="uid://c3wj76bbekjnp" path="res://Scenes/Level/color_rect.gd" id="6_v2s02"]
+[ext_resource type="AudioStream" uid="uid://d0u0bfa3xb7gc" path="res://Assets/Audio/Music/Main Menu/Reverberance title screen v2.mp3" id="7_052de"]
+
+[sub_resource type="Gradient" id="Gradient_ce3w2"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n45e2"]
+gradient = SubResource("Gradient_ce3w2")
+width = 1000
+height = 720
+fill = 1
+fill_from = Vector2(0.487179, 0.508547)
+fill_to = Vector2(0.786325, 0.17094)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6iyac"]
+frequency = 0.0491
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdnlq"]
+noise = SubResource("FastNoiseLite_6iyac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hptm8"]
+shader = ExtResource("4_6dr1d")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_fdnlq")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.06
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.65
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Gradient" id="Gradient_jkdf5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsu2k"]
+gradient = SubResource("Gradient_jkdf5")
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_tusap")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="Player" parent="." instance=ExtResource("3_8d36y")]
+position = Vector2(507.458, 267.083)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(670, 360)
+scale = Vector2(2.06773, 2.06773)
+texture = SubResource("GradientTexture2D_n45e2")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Start" type="Button" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -209.0
+offset_top = 111.0
+offset_right = -163.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(9.04, 1.82258)
+focus_mode = 0
+flat = true
+
+[node name="Reverb" type="Sprite2D" parent="."]
+position = Vector2(643, 353)
+texture = ExtResource("3_lljoj")
+
+[node name="Titleonly" type="Sprite2D" parent="."]
+position = Vector2(662, 391)
+texture = ExtResource("4_8d36y")
+
+[node name="water" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_hptm8")
+position = Vector2(161, 215)
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_wsu2k")
+polygon = PackedVector2Array(-667, -692, 1605, -678, 1615, 848, -671, 868)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nm8ig")
+volume_db = -80.0
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+z_index = 86
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_v2s02")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.226707, 0.226708, 0.226707, 1)
+
+[node name="someshit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_052de")
+volume_db = -6.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/Start" to="." method="_on_start_pressed"]

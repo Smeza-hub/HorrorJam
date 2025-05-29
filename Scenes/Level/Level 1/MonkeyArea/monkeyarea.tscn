@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://crebcoja2n7wo"]
+
+[ext_resource type="Script" uid="uid://dbloe1enljimy" path="res://Scenes/Level/Level 1/MonkeyArea/monkey.gd" id="1_fbxy7"]
+[ext_resource type="AudioStream" uid="uid://bd680ix432cuy" path="res://Assets/Audio/SFX/Monkey time!.wav" id="2_ckn1s"]
+[ext_resource type="AudioStream" uid="uid://c18f6s8dixg36" path="res://Assets/Audio/SFX/Ape launch V2 (1).wav" id="3_8ccj5"]
+
+[node name="Monkey" type="Node2D"]
+script = ExtResource("1_fbxy7")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 16391
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" groups=["monkey"]]
+position = Vector2(-4, 10)
+build_mode = 1
+polygon = PackedVector2Array(45, -10, 47, 9, 29, 12, 22, -10)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ckn1s")
+volume_db = 8.0
+
+[node name="apesound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8ccj5")
+volume_db = -1.5
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://j62islsgj2oa"]
+
+[ext_resource type="Shader" uid="uid://djenikc13gpiv" path="res://Assets/Shaders/waterwaves.gdshader" id="1_xgk2n"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o0nlu"]
+shader = ExtResource("1_xgk2n")
+shader_parameter/time_speed = 1.0
+shader_parameter/wave_amplitude = 5.0
+shader_parameter/wave_frequency = 10.0
+
+[sub_resource type="Gradient" id="Gradient_ugycf"]
+offsets = PackedFloat32Array(0, 0.528169, 0.605634, 0.753521, 0.922535, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.0521464, 0.0521464, 0.0521464, 0.023517, 0.140143, 0.140143, 0.140143, 0.0632019, 0.274194, 0.274194, 0.274194, 0.123656, 0.67897, 0.67897, 0.67897, 0.306202, 1, 1, 1, 0.45098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4kcyg"]
+gradient = SubResource("Gradient_ugycf")
+fill_from = Vector2(0.475728, 1)
+fill_to = Vector2(0.456311, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_o0nlu")
+position = Vector2(-4, 0)
+color = Color(0.188935, 0.246559, 0.455934, 1)
+texture = SubResource("GradientTexture2D_4kcyg")
+polygon = PackedVector2Array(-13, -13, -9.52388, -13, -5.01656, -13, -0.786621, -13, 3.99807, -13, 8.92144, -13, 14.1222, -13, 17.4507, -13, 21, -13, 21, 16, -13, 16)
+uv = PackedVector2Array(14, 6, 22, 6, 35, 6, 42.4677, 6, 48, 6, 48, 35, 14, 35)

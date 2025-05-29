@@ -1,0 +1,414 @@
+[gd_scene load_steps=38 format=3 uid="uid://bjtck2gx318dy"]
+
+[ext_resource type="Script" uid="uid://bncsrkypuxrsi" path="res://Scenes/test/opening_test.gd" id="1_pgxxk"]
+[ext_resource type="PackedScene" uid="uid://lx2hc8f06wwm" path="res://Scenes/character.tscn" id="2_qw88l"]
+[ext_resource type="PackedScene" uid="uid://b5nj0ymggjivm" path="res://Scenes/siren.tscn" id="3_bvxuw"]
+[ext_resource type="Texture2D" uid="uid://b6hkx40h7glb" path="res://assets/Level/room1/black-monochrome-abstract-rock-wood-texture-cave-Formation-limestone-material-darkness-soil-geology-black-and-white-monochrome-photography-177939-2743504821.jpg" id="3_evcoe"]
+[ext_resource type="PackedScene" uid="uid://uv61swifhk2" path="res://Scenes/UI/bars.tscn" id="3_qw88l"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="4_j6jh8"]
+[ext_resource type="PackedScene" uid="uid://crebcoja2n7wo" path="res://Scenes/Level/monkeyarea.tscn" id="5_8saqj"]
+[ext_resource type="PackedScene" uid="uid://c2vymgtgxvq7h" path="res://Scenes/Level/breakpoint.tscn" id="5_lo2hb"]
+[ext_resource type="PackedScene" uid="uid://dllmd5x4uvxvd" path="res://Scenes/airpocket.tscn" id="6_ejnxq"]
+[ext_resource type="Script" uid="uid://bykbubttio3uk" path="res://airpocket.gd" id="6_taxej"]
+[ext_resource type="PackedScene" uid="uid://dbhy0vvb5ydxd" path="res://Scenes/Level/barrier.tscn" id="7_a22pk"]
+[ext_resource type="PackedScene" uid="uid://dl7p4seuih7fp" path="res://Scenes/Level/newbigrock.tscn" id="7_bvxuw"]
+[ext_resource type="PackedScene" uid="uid://3736eccaxja3" path="res://Scenes/Level/spiritlight_env.tscn" id="7_j60hh"]
+[ext_resource type="PackedScene" uid="uid://bo34r47433fif" path="res://Scenes/Level/bigrock2.tscn" id="8_1tfi6"]
+[ext_resource type="PackedScene" uid="uid://b4ll2s58fmlb6" path="res://Scenes/Level/monkeyocclude.tscn" id="8_hgjuf"]
+[ext_resource type="PackedScene" uid="uid://hvgvgbud6mu" path="res://Scenes/Level/dis_block.tscn" id="10_873te"]
+[ext_resource type="AudioStream" uid="uid://hnhca768bje7" path="res://assets/Audio/Water ambience V3.wav" id="11_8saqj"]
+[ext_resource type="PackedScene" uid="uid://b6gtn42prhy6w" path="res://Scenes/torpedo.tscn" id="14_1tfi6"]
+[ext_resource type="AudioStream" uid="uid://dc52tc460eurg" path="res://assets/Audio/Lamp malfunction sound.wav" id="15_834u5"]
+[ext_resource type="AudioStream" uid="uid://q2p46l0fosah" path="res://assets/Audio/Cave drowner BGM V.3.wav" id="17_5j0f4"]
+[ext_resource type="PackedScene" uid="uid://day16lo5da8jt" path="res://Scenes/ui.tscn" id="19_q16h3"]
+[ext_resource type="PackedScene" uid="uid://8h1bcfk86yba" path="res://Scenes/Level/checkpoint.tscn" id="20_ikt0n"]
+[ext_resource type="Script" uid="uid://jsjr8vr0pmqi" path="res://RespawnPoint.gd" id="21_td0wb"]
+
+[sub_resource type="Gradient" id="Gradient_bvxuw"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1tfi6"]
+gradient = SubResource("Gradient_bvxuw")
+width = 84
+height = 134
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.763533, 0.269231)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+frequency = 0.0063
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6iyac"]
+frequency = 0.0491
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdnlq"]
+noise = SubResource("FastNoiseLite_6iyac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hptm8"]
+shader = ExtResource("4_j6jh8")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_fdnlq")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.28
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.65
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Gradient" id="Gradient_jkdf5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsu2k"]
+gradient = SubResource("Gradient_jkdf5")
+
+[sub_resource type="Gradient" id="Gradient_wjyeb"]
+offsets = PackedFloat32Array(0, 0.442396, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0.62212, 0.62212, 0.62212, 0.62212, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_taxej"]
+gradient = SubResource("Gradient_wjyeb")
+width = 800
+height = 1025
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dowhl"]
+size = Vector2(20, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgjuf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f6xn5"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_pgxxk")
+
+[node name="Black-monochrome-abstract-rock-wood-texture-cave-formation-limestone-material-darkness-soil-geology-black-and-white-monochrome-photography-177939-2743504821" type="Sprite2D" parent="."]
+self_modulate = Color(0.61339, 0.61339, 0.61339, 1)
+texture_repeat = 2
+position = Vector2(4037, 2117)
+texture = ExtResource("3_evcoe")
+region_enabled = true
+region_rect = Rect2(0, 0, 9000, 5000)
+
+[node name="Player" parent="." instance=ExtResource("2_qw88l")]
+position = Vector2(3027, 265)
+blip_count = 150
+headlamp_on = null
+
+[node name="Node" parent="." instance=ExtResource("7_j60hh")]
+position = Vector2(1316, -1)
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Siren" parent="Enemies" instance=ExtResource("3_bvxuw")]
+position = Vector2(2110, 1022)
+rotation = 2.09439
+
+[node name="Torpedo" parent="Enemies" instance=ExtResource("14_1tfi6")]
+position = Vector2(4180.63, 2278.67)
+
+[node name="Torpedo2" parent="Enemies" instance=ExtResource("14_1tfi6")]
+position = Vector2(4616.27, 2318.72)
+
+[node name="Siren2" parent="Enemies" instance=ExtResource("3_bvxuw")]
+position = Vector2(4720.02, 2123.07)
+rotation = -0.523598
+
+[node name="Siren3" parent="Enemies" instance=ExtResource("3_bvxuw")]
+position = Vector2(5128, 1984)
+rotation = 1.57079
+
+[node name="Siren4" parent="Enemies" instance=ExtResource("3_bvxuw")]
+position = Vector2(6311, 2801)
+rotation = 0.261799
+
+[node name="Siren5" parent="Enemies" instance=ExtResource("3_bvxuw")]
+position = Vector2(6695.09, 2930.57)
+rotation = -2.87979
+
+[node name="Siren6" parent="Enemies" instance=ExtResource("3_bvxuw")]
+position = Vector2(6688, 2653)
+rotation = -2.35619
+
+[node name="Torpedo3" parent="Enemies" instance=ExtResource("14_1tfi6")]
+position = Vector2(7015, 2743)
+rotation = 1.309
+
+[node name="Rocklight" type="PointLight2D" parent="."]
+position = Vector2(1967.51, 1314.31)
+color = Color(0.717647, 0.466667, 0.0117647, 1)
+texture = SubResource("GradientTexture2D_1tfi6")
+
+[node name="Rocklight2" type="PointLight2D" parent="."]
+position = Vector2(2111, 1279)
+color = Color(0.717647, 0.466667, 0.0117647, 1)
+texture = SubResource("GradientTexture2D_1tfi6")
+
+[node name="Rocklight3" type="PointLight2D" parent="."]
+position = Vector2(1970, 1477)
+color = Color(0.717647, 0.466667, 0.0117647, 1)
+texture = SubResource("GradientTexture2D_1tfi6")
+
+[node name="Rocklight4" type="PointLight2D" parent="."]
+position = Vector2(1826, 1534)
+color = Color(0.717647, 0.466667, 0.0117647, 1)
+texture = SubResource("GradientTexture2D_1tfi6")
+
+[node name="Rocklight5" type="PointLight2D" parent="."]
+position = Vector2(1897, 1738)
+color = Color(0.717647, 0.466667, 0.0117647, 1)
+texture = SubResource("GradientTexture2D_1tfi6")
+
+[node name="water" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_hptm8")
+position = Vector2(-1101, -13)
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_wsu2k")
+polygon = PackedVector2Array(-204, -201, -115, -247, 8, -258, 201, -263, 368, -284, 733, -275, 951, -274, 1014, -274, 1115, -240, 1225, -238, 1472, -89, 1480, -87, 1496, -87, 1516, -92, 1528, -95, 1566, -108, 2018, -71, 2241, -71, 2470, -109, 2625, -108, 3109, -517, 3638, -553, 3698, -487, 3675, -110, 3781, -116, 4529, -112, 4590, -107, 4585, -469, 5451, -337, 5662, 938, 3737, 1568, 3395, 1936, 3556, 2051, 3803, 2052, 5553, 1561, 5326, 1695, 5365.55, 1694.91, 5766, 1694, 5802, 1642, 6181, 1605, 6575, 1537, 6934, 1843, 6363, 2459, 6610, 2459, 6933, 1998, 7524, 2301, 7814, 2301, 8450, 2219, 9614, 2366, 9534, 3097, 8361, 3193, 7770, 3087, 6512, 2660, 5973, 2676, 5908, 2499, 5749, 2502, 5748, 2554, 5906, 2554, 5917, 2668, 5705, 2655, 5392, 2812, 4701, 2611, 3577, 2455, 3170, 2321, 2955, 2032, 2829, 1673, 2891, 1308, 2874, 1187, 2636, 991, 2655, 654, 2673, 511, 3184, 504.725, 3369, 502, 3291, 251, 2834, 283, 2589, 516, -209, 515)
+
+[node name="Level" type="Node" parent="."]
+
+[node name="PointLight2D2" type="PointLight2D" parent="Level"]
+position = Vector2(3027, -288)
+rotation = 4.71238
+scale = Vector2(0.97525, 0.831489)
+color = Color(0.754657, 0.637121, 0.333204, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 5
+texture = SubResource("GradientTexture2D_taxej")
+offset = Vector2(-142.297, 19.9475)
+
+[node name="LightOccluder2D" parent="Level" instance=ExtResource("8_hgjuf")]
+position = Vector2(3000, 0)
+occluder_light_mask = 4
+
+[node name="barrier" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(3027, -183)
+
+[node name="Monkey" parent="Level" instance=ExtResource("5_8saqj")]
+position = Vector2(2689, -67)
+
+[node name="CollisionPolygon2D" parent="Level/Monkey/Area2D" index="0"]
+position = Vector2(0, -43)
+scale = Vector2(1, 4.66016)
+polygon = PackedVector2Array(796, -14, 797, 16, -60, 16, -78, -16)
+
+[node name="Marker2D" parent="Level/Monkey" index="1"]
+position = Vector2(12, 885)
+
+[node name="bigrock" parent="Level" instance=ExtResource("7_bvxuw")]
+
+[node name="Node2D" parent="Level" instance=ExtResource("8_1tfi6")]
+position = Vector2(3000, 0)
+
+[node name="DisBlock" parent="Level" instance=ExtResource("10_873te")]
+position = Vector2(2875, 531)
+rotation = -1.57079
+scale = Vector2(1, 0.8)
+collision_layer = 2
+collision_mask = 7
+
+[node name="Leftrock" parent="Level/DisBlock" index="0"]
+position = Vector2(4.99962, 157.961)
+scale = Vector2(1, 1.86)
+
+[node name="CollisionPolygon2D" parent="Level/DisBlock" index="1"]
+position = Vector2(4.99962, 157.961)
+scale = Vector2(1, 1.86)
+
+[node name="Leftrock2" parent="Level/DisBlock" index="2"]
+position = Vector2(-48.201, 230.008)
+scale = Vector2(1, 1.95)
+
+[node name="CollisionPolygon2D2" parent="Level/DisBlock" index="3"]
+position = Vector2(-46.9989, 230)
+scale = Vector2(1, 1.95)
+
+[node name="Airpocket" type="Area2D" parent="Level" groups=["airpocket"]]
+position = Vector2(1014, -110)
+scale = Vector2(10.68, 0.48)
+collision_layer = 8
+collision_mask = 7
+priority = 1
+gravity_space_override = 3
+script = ExtResource("6_taxej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Airpocket"]
+shape = SubResource("RectangleShape2D_dowhl")
+
+[node name="Airpocket2" type="Area2D" parent="Level" groups=["airpocket"]]
+position = Vector2(4461, 1575)
+scale = Vector2(20.92, 1.96)
+collision_layer = 8
+collision_mask = 7
+priority = 1
+gravity_space_override = 3
+script = ExtResource("6_taxej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Airpocket2"]
+shape = SubResource("RectangleShape2D_dowhl")
+
+[node name="barrier4" type="StaticBody2D" parent="Level"]
+position = Vector2(4716.84, 2525.19)
+collision_layer = 2
+collision_mask = 7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Level/barrier4"]
+position = Vector2(390.16, -14.1899)
+polygon = PackedVector2Array(-304.84, -36.1899, -291, 18, -478.84, 17.8101, -476.84, -33.1899)
+
+[node name="Airpocket" parent="Level/barrier4/CollisionPolygon2D" instance=ExtResource("6_ejnxq")]
+position = Vector2(-386, 12)
+scale = Vector2(9, 0.32008)
+
+[node name="barrier3" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(4435, 1630)
+
+[node name="barrier2" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(1855, 445)
+
+[node name="Airpocket3" type="Area2D" parent="Level" groups=["airpocket"]]
+position = Vector2(6595, 2244)
+scale = Vector2(-34.1596, 0.814253)
+collision_layer = 8
+collision_mask = 7
+priority = 1
+gravity_space_override = 3
+script = ExtResource("6_taxej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/Airpocket3"]
+shape = SubResource("RectangleShape2D_dowhl")
+
+[node name="barrier5" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(6591, 2248)
+scale = Vector2(0.840001, 0.72001)
+
+[node name="barrier6" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(5382, 2397)
+scale = Vector2(0.32, 1)
+
+[node name="barrier7" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(-151, -350)
+
+[node name="barrier8" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(1014, -131)
+scale = Vector2(0.389381, 1)
+
+[node name="barrier9" parent="Level" instance=ExtResource("7_a22pk")]
+position = Vector2(2582, 1987)
+scale = Vector2(0.28, 1)
+
+[node name="Bars" parent="." instance=ExtResource("3_qw88l")]
+
+[node name="MonkeyAirpocket" type="Area2D" parent="." groups=["airpocket"]]
+position = Vector2(3048, -227)
+rotation = -1.5708
+scale = Vector2(9.96, 43.4)
+collision_layer = 8
+collision_mask = 7
+priority = 1
+gravity_space_override = 3
+script = ExtResource("6_taxej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MonkeyAirpocket"]
+shape = SubResource("RectangleShape2D_hgjuf")
+
+[node name="breakpoint" parent="." instance=ExtResource("5_lo2hb")]
+position = Vector2(555, 52)
+
+[node name="Airpocket2" type="Area2D" parent="." groups=["airpocket"]]
+position = Vector2(1921, 454.001)
+scale = Vector2(28.2801, 0.724295)
+collision_layer = 8
+collision_mask = 7
+priority = 1
+gravity_space_override = 3
+script = ExtResource("6_taxej")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Airpocket2"]
+shape = SubResource("RectangleShape2D_dowhl")
+
+[node name="Airpocket" parent="." instance=ExtResource("6_ejnxq")]
+position = Vector2(-128, -328)
+scale = Vector2(8.08004, 0.72429)
+
+[node name="Airpocket3" parent="." instance=ExtResource("6_ejnxq")]
+position = Vector2(5382, 2424)
+scale = Vector2(12.92, 0.399975)
+
+[node name="shadow" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.114897, 0.114897, 0.114897, 1)
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_8saqj")
+volume_db = -12.0
+autoplay = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_5j0f4")
+volume_db = -80.0
+mix_target = 1
+
+[node name="Effects" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_834u5")
+volume_db = -6.0
+
+[node name="UI" parent="." instance=ExtResource("19_q16h3")]
+
+[node name="Checkpoint" parent="." instance=ExtResource("20_ikt0n")]
+position = Vector2(1866, 481)
+
+[node name="Area2D" parent="Checkpoint" index="1"]
+position = Vector2(-226, 90)
+scale = Vector2(8.51999, 1)
+
+[node name="Spawn" type="Node2D" parent="."]
+position = Vector2(-128, -201)
+script = ExtResource("21_td0wb")
+
+[node name="RespawnPoint" type="Marker2D" parent="Spawn"]
+
+[node name="Area2D" type="Area2D" parent="Spawn"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawn/Area2D"]
+shape = SubResource("RectangleShape2D_f6xn5")
+
+[node name="Checkpoint2" parent="." instance=ExtResource("20_ikt0n")]
+position = Vector2(4456, 1692)
+scale = Vector2(22.32, 1)
+
+[node name="Airpocket4" parent="." instance=ExtResource("6_ejnxq")]
+position = Vector2(2539.16, 2030.85)
+
+[node name="CollisionShape2D" parent="Airpocket4" index="0"]
+position = Vector2(38.8435, -46.848)
+scale = Vector2(12.04, 1)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("20_ikt0n")]
+position = Vector2(5290, 2497)
+scale = Vector2(2, 4.00049)
+
+[node name="RespawnPoint" parent="Checkpoint3" index="0"]
+position = Vector2(50, -9.49884)
+
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
+[connection signal="player_respawn" from="Player" to="." method="_on_player_player_respawn"]
+[connection signal="body_entered" from="Level/Airpocket" to="Level/Airpocket" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Airpocket2" to="Level/Airpocket2" method="_on_body_entered"]
+[connection signal="body_entered" from="Level/Airpocket3" to="Level/Airpocket3" method="_on_body_entered"]
+[connection signal="body_entered" from="MonkeyAirpocket" to="MonkeyAirpocket" method="_on_body_entered"]
+[connection signal="body_entered" from="Airpocket2" to="Airpocket2" method="_on_body_entered"]
+[connection signal="body_entered" from="Spawn/Area2D" to="Spawn" method="_on_area_2d_body_entered"]
+
+[editable path="Level/Monkey"]
+[editable path="Level/DisBlock"]
+[editable path="Checkpoint"]
+[editable path="Checkpoint2"]
+[editable path="Airpocket4"]
+[editable path="Checkpoint3"]

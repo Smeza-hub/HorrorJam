@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dllmd5x4uvxvd"]
+
+[ext_resource type="Script" uid="uid://bykbubttio3uk" path="res://Scenes/Level/airpocket.gd" id="1_e0kvo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dowhl"]
+
+[node name="Airpocket" type="Area2D" groups=["airpocket"]]
+collision_layer = 8
+collision_mask = 7
+priority = 1
+gravity_space_override = 3
+script = ExtResource("1_e0kvo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dowhl")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

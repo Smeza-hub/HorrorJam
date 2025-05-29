@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://hvgvgbud6mu"]
+
+[ext_resource type="Texture2D" uid="uid://bvqawgr0liis" path="res://Assets/Textures/Level/Level 1 Assets/motion blur.zip0010.png" id="1_hjyrs"]
+
+[node name="DisBlock" type="StaticBody2D"]
+
+[node name="Leftrock" type="Sprite2D" parent="."]
+texture = ExtResource("1_hjyrs")
+offset = Vector2(470, 255)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+build_mode = 1
+polygon = PackedVector2Array(-30, -245, -30, 277, 25.1, 275, 28, 275, 28, 225.4, 31.7, 205, 32.9, 205, 34.9, 140, 36.2, 140, 32, 97, 32, 85, 39.5, 58, 41.4, 58, 36, 28.6, 36, 27.3, 42, -6.79999, 42, -26.2, 37, -50.4, 37, -62.7, 43.7, -106, 45.3, -106, 42, -128.3, 42, -129.6, 46.7, -154, 48.2, -154, 44, -211.1, 44, -217, 59.6, -228, 62, -228, 72, -242, 74, -242, 74, -245)
+
+[node name="Leftrock2" type="Sprite2D" parent="."]
+position = Vector2(-61, 28)
+rotation = 3.14159
+texture = ExtResource("1_hjyrs")
+offset = Vector2(470, 255)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(-61, 28)
+rotation = 3.14159
+build_mode = 1
+polygon = PackedVector2Array(-30, -245, -30, 277, 25.1, 275, 28, 275, 28, 225.4, 31.7, 205, 32.9, 205, 34.9, 140, 36.2, 140, 32, 97, 32, 85, 39.5, 58, 41.4, 58, 36, 28.6, 36, 27.3, 42, -6.79999, 42, -26.2, 37, -50.4, 37, -62.7, 43.7, -106, 45.3, -106, 42, -128.3, 42, -129.6, 46.7, -154, 48.2, -154, 44, -211.1, 44, -217, 59.6, -228, 62, -228, 72, -242, 74, -242, 74, -245)

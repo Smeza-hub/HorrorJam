@@ -1,0 +1,130 @@
+[gd_scene load_steps=18 format=3 uid="uid://6lejcfg6641d"]
+
+[ext_resource type="VideoStream" uid="uid://cn6an3df3282m" path="res://Assets/video/opening.ogv" id="1_36olc"]
+[ext_resource type="Script" uid="uid://cufqtntv63m6l" path="res://Scenes/opening/video.gd" id="1_l13ew"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://Assets/Shaders/watersurface.gdshader" id="1_qefq3"]
+[ext_resource type="Texture2D" uid="uid://daqb1iwdugiek" path="res://Assets/video/introimage.png" id="2_36olc"]
+[ext_resource type="AudioStream" uid="uid://b63dkd1d21dtg" path="res://Assets/Audio/Music/Ambience/Reverberance intro.wav" id="5_hydmk"]
+
+[sub_resource type="Gradient" id="Gradient_l13ew"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hydmk"]
+gradient = SubResource("Gradient_l13ew")
+width = 2000
+height = 2000
+fill_from = Vector2(0.517094, 0.773504)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_36olc"]
+closed = false
+cull_mode = 2
+polygon = PackedVector2Array(-382, -99, -325, -80, -254, -35, -220, -79, -208, -92, -179, -82, -168, -76, -150, -58, -122, -76, -68, -96, -26, -90, -19, -63, -19, -55, -23, -48, -27, -43, -31, -34, -27, -28, -23, -21, -21, -14, -23, -9, -45, 12, -62, 55, -45, 72, -38, 85, -38, 105, -46, 117, -65, 131, -74, 140, -74, 178, -67, 194, -60, 211, -56, 230, -62, 245, -91, 250, -686, 252, -683, -42, -691, -82, -617, -54, -590, -54, -471, -79, -381, -100)
+
+[sub_resource type="Gradient" id="Gradient_36olc"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l13ew"]
+gradient = SubResource("Gradient_36olc")
+width = 1000
+height = 1000
+fill = 1
+fill_from = Vector2(0.491453, 0.5)
+fill_to = Vector2(0.803419, 0.17094)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
+frequency = 0.0061
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d1ilt"]
+noise = SubResource("FastNoiseLite_hptm8")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6iyac"]
+frequency = 0.0072
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fdnlq"]
+noise = SubResource("FastNoiseLite_6iyac")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hptm8"]
+shader = ExtResource("1_qefq3")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_fdnlq")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_d1ilt")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.35
+shader_parameter/distortionForce = 0.013
+shader_parameter/WDBrightness = 0.3
+shader_parameter/WDFreq = 0.65
+shader_parameter/WDSize = 1.0
+shader_parameter/WDSpeed = 5.6
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.13, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="Gradient" id="Gradient_jkdf5"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wsu2k"]
+gradient = SubResource("Gradient_jkdf5")
+
+[node name="Node" type="Node"]
+script = ExtResource("1_l13ew")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(599, -530)
+energy = 0.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_hydmk")
+offset = Vector2(-36, 906)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(649, 358)
+zoom = Vector2(0.66, 0.65)
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Camera2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_36olc")
+autoplay = true
+
+[node name="Introimage" type="Sprite2D" parent="Camera2D"]
+visible = false
+texture = ExtResource("2_36olc")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2(374, 163)
+occluder = SubResource("OccluderPolygon2D_36olc")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(565, 137)
+scale = Vector2(1.71071, 1.68)
+energy = 0.0
+blend_mode = 2
+texture = SubResource("GradientTexture2D_l13ew")
+
+[node name="water" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_hptm8")
+position = Vector2(205, 130)
+scale = Vector2(3.88241, 1.73283)
+color = Color(1, 1, 1, 0)
+texture = SubResource("GradientTexture2D_wsu2k")
+polygon = PackedVector2Array(-211, 164.156, 448, 166.133, 430, 518, -209, 515)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hydmk")
+volume_db = -1.0
+autoplay = true
+
+[connection signal="finished" from="Camera2D/VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]

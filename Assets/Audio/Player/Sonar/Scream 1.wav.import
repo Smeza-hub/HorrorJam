@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cyi8rs0g2o6ub"
+path="res://.godot/imported/Scream 1.wav-a57547a2de3b8eec977ce21b185fe6d8.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Player/Sonar/Scream 1.wav"
+dest_files=["res://.godot/imported/Scream 1.wav-a57547a2de3b8eec977ce21b185fe6d8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

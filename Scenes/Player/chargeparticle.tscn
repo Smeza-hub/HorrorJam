@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://nxs85phihfdc"]
+
+[sub_resource type="Curve" id="Curve_mtlar"]
+_data = [Vector2(0.251256, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qq8rc"]
+curve = SubResource("Curve_mtlar")
+
+[sub_resource type="Curve" id="Curve_24nhx"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.592965, 0.404494), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_mtlar"]
+curve = SubResource("Curve_24nhx")
+
+[sub_resource type="Curve" id="Curve_qq8rc"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.542714, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qr3re"]
+curve = SubResource("Curve_qq8rc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_81v7f"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 54.57
+emission_ring_inner_radius = 61.4
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -100.0
+radial_accel_max = -96.62
+tangential_accel_min = -75.53
+tangential_accel_max = -2.23517e-06
+tangential_accel_curve = SubResource("CurveTexture_qr3re")
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_mtlar")
+alpha_curve = SubResource("CurveTexture_qq8rc")
+
+[node name="chargeparticle" type="GPUParticles2D"]
+amount = 50
+lifetime = 0.99
+randomness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_81v7f")

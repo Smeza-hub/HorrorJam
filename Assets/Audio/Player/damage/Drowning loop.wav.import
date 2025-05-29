@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cdcl2egmqc1cf"
+path="res://.godot/imported/Drowning loop.wav-08c9e7b96693e9fc892fd1f8f108db92.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Player/damage/Drowning loop.wav"
+dest_files=["res://.godot/imported/Drowning loop.wav-08c9e7b96693e9fc892fd1f8f108db92.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

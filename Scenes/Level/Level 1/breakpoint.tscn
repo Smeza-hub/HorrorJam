@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2vymgtgxvq7h"]
+
+[ext_resource type="Script" uid="uid://dcr7fq5vacoiq" path="res://Scenes/Level/Level 1/Main Level Scene/breakpoint.gd" id="1_fhn6b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejnxq"]
+
+[node name="breakpoint" type="Area2D"]
+collision_mask = 32769
+script = ExtResource("1_fhn6b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+scale = Vector2(1, 2.64)
+shape = SubResource("RectangleShape2D_ejnxq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

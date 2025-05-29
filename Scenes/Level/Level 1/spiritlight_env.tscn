@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://3736eccaxja3"]
+
+[ext_resource type="Script" uid="uid://dcxxgpjaist7m" path="res://Scenes/Level/Level 1/spiritlight_env.gd" id="2_avtlp"]
+[ext_resource type="Texture2D" uid="uid://doykmwpq548l7" path="res://Assets/Textures/Lights/New Project (4).png" id="2_t0f3s"]
+[ext_resource type="AudioStream" uid="uid://yg1msf3dx762" path="res://Assets/Audio/SFX/SpiritAcquire/Spirit acquire.wav" id="3_avtlp"]
+[ext_resource type="AudioStream" uid="uid://bxcr5tdpqoa24" path="res://Assets/Audio/SFX/SpiritAcquire/Spirit touch.wav" id="3_bbybj"]
+
+[sub_resource type="Gradient" id="Gradient_a5ess"]
+offsets = PackedFloat32Array(0, 0.465438, 0.608295, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.588834, 0.588834, 0.588834, 0.588834, 0.359447, 0.359447, 0.359447, 0.359447, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dyk2k"]
+gradient = SubResource("Gradient_a5ess")
+width = 1024
+height = 1024
+fill = 1
+fill_from = Vector2(0.5, 0.512821)
+fill_to = Vector2(0.388889, 0.683761)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avtlp"]
+size = Vector2(5000, 800)
+
+[node name="Node" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 0
+z_index = 458
+scale = Vector2(0.439999, 0.439999)
+color = Color(0.78329, 0.729716, 0.37184, 1)
+blend_mode = 2
+texture = SubResource("GradientTexture2D_dyk2k")
+offset = Vector2(0.310059, -1.52588e-05)
+script = ExtResource("2_avtlp")
+flicker_intensity = 1.0
+flicker_speed = 1.0
+base_energy = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(168, 0)
+scale = Vector2(0.319999, 0.319999)
+texture = ExtResource("2_t0f3s")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.159999, 0.159999)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2481.27, 0)
+shape = SubResource("RectangleShape2D_avtlp")
+
+[node name="OrbAcquire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_avtlp")
+volume_db = -4.0
+
+[node name="SpiritTouch" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_bbybj")
+
+[connection signal="body_entered" from="Area2D" to="PointLight2D" method="_on_area_2d_body_entered"]

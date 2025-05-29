@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://d28vh2btjtik7"]
 
-[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://watersurface.gdshader" id="1_pmta3"]
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://Assets/Shaders/watersurface.gdshader" id="1_pmta3"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hptm8"]
 frequency = 0.0063

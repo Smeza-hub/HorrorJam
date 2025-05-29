@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://ia54as88lvny"]
+
+[ext_resource type="Texture2D" uid="uid://d1anbin8vf4ja" path="res://Assets/Textures/Lights/character.tres" id="1_tfwav"]
+[ext_resource type="Script" uid="uid://ciautagksa68k" path="res://Scenes/Player/playerlight.gd" id="2_cf506"]
+[ext_resource type="Texture2D" uid="uid://b4ltnl7k3x5uv" path="res://Assets/Textures/Lights/headlamp.png" id="3_jmsbj"]
+
+[sub_resource type="Gradient" id="Gradient_kq7hj"]
+offsets = PackedFloat32Array(0, 0.519481)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7iw6i"]
+gradient = SubResource("Gradient_kq7hj")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2daya"]
+closed = false
+polygon = PackedVector2Array(-200, -1200, 400, -1100, 600, -400, 500, -300, 400, -200, 300, -200, 100, -200, -100, -200, -200, -300, -300, -400, -400, -600, -400, -800, -300, -1000, -200, -1200)
+
+[node name="PointLight2D" type="PointLight2D"]
+light_mask = 2
+z_index = 458
+scale = Vector2(0.01, 0.01)
+color = Color(0.78329, 0.729716, 0.37184, 1)
+energy = 3.0
+blend_mode = 2
+texture = ExtResource("1_tfwav")
+offset = Vector2(2672.31, -1.52588e-05)
+texture_scale = 4.0
+script = ExtResource("2_cf506")
+target_node = NodePath("../Sprite2D/headtracker")
+flicker_intensity = 0.5
+flicker_speed = 1.0
+base_energy = 2.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-5531.9, 299.999)
+rotation = 3.14159
+scale = Vector2(78.882, 62.16)
+color = Color(0.690196, 0.639216, 0.298039, 1)
+energy = 4.0
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("3_jmsbj")
+offset = Vector2(38.5982, 1.90735e-06)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2724.72, 0)
+scale = Vector2(52.9998, 52.9998)
+texture = SubResource("GradientTexture2D_7iw6i")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(2600, 700)
+occluder = SubResource("OccluderPolygon2D_2daya")

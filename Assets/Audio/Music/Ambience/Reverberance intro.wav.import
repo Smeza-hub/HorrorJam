@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b63dkd1d21dtg"
+path="res://.godot/imported/Reverberance intro.wav-3e04654ba2aff563bd1eb1901ef9d261.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Music/Ambience/Reverberance intro.wav"
+dest_files=["res://.godot/imported/Reverberance intro.wav-3e04654ba2aff563bd1eb1901ef9d261.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpn28gqewuy8i"]
+
+[ext_resource type="Script" uid="uid://cxvp8rrd28rij" path="res://Scenes/UI/stamina.gd" id="1_2p2v8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fjur2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4foey"]
+bg_color = Color(0.725553, 0.661599, 0.238741, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+shadow_color = Color(0, 0, 0, 0.27451)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0bmw4"]
+bg_color = Color(0.18359, 0.18359, 0.18359, 1)
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.27451)
+shadow_offset = Vector2(0, 1)
+
+[node name="Stamina" type="ProgressBar"]
+z_index = 1
+offset_right = 82.0
+offset_bottom = 4.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_fjur2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4foey")
+value = 100.0
+rounded = true
+allow_greater = true
+show_percentage = false
+script = ExtResource("1_2p2v8")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0bmw4")
+value = 100.0
+show_percentage = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true

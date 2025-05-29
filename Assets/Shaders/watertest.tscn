@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://cx6kaxh6acjip"]
+
+[ext_resource type="Shader" uid="uid://c3gfgtwsitksi" path="res://Assets/Shaders/watersurface.gdshader" id="1_y1ftj"]
+[ext_resource type="Texture2D" uid="uid://dcrmy1a0eqeyg" path="res://icon.svg" id="2_53ko6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohkr6"]
+shader = ExtResource("1_y1ftj")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.35
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 1.5
+shader_parameter/WDFreq = 0.6
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0c81e"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0c81e"]
+noise = SubResource("FastNoiseLite_0c81e")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4a677"]
+noise_type = 2
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4a677"]
+noise = SubResource("FastNoiseLite_4a677")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0c81e"]
+shader = ExtResource("1_y1ftj")
+shader_parameter/waterNoise = SubResource("NoiseTexture2D_4a677")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_0c81e")
+shader_parameter/waterColor = Color(0.117, 0.27, 0.58, 1)
+shader_parameter/colorCorection = 0.39
+shader_parameter/distortionForce = 0.01
+shader_parameter/WDBrightness = 0.7
+shader_parameter/WDFreq = 0.6
+shader_parameter/WDSize = 0.9
+shader_parameter/WDSpeed = 4.0
+shader_parameter/tiling = Vector2(1, 1)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.01
+shader_parameter/backGroundDirY = 0.01
+
+[node name="Node2D" type="Node2D"]
+material = SubResource("ShaderMaterial_ohkr6")
+
+[node name="Node" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_0c81e")
+position = Vector2(0, -3)
+scale = Vector2(9.14063, 5.75521)
+texture = ExtResource("2_53ko6")
