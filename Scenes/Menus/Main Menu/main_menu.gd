@@ -27,3 +27,10 @@ func _on_exit_pressed() -> void:
 	get_tree().quit()
 func _load_main_scene():
 	get_tree().change_scene_to_file("res://Scenes/opening/video.tscn")
+
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	var tween = color_rect.fade_out(2)
+	tween.parallel().tween_property(someshit,"volume_db",-80,2)
+	tween.parallel().tween_property(audio_stream_player,"volume_db",-80,2)
+	tween.connect("finished", Callable(self, "_load_main_scene"))
